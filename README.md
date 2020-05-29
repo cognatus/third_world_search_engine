@@ -40,16 +40,21 @@ Fort this project, you can choose the db name but i propose you to use deltaites
 With this command we specify the file to run with flask
 
     export FLASK_APP=deltai_api.py
-With the command, we start the migration folder and all the sutff for SQLAlchemy
-    flask db init
-With the following commands, we prepare the models migrations and DB to be created
-if the first command generates any error, enter directly to mysql and create directly the db *create database deltaitest;*
-
-    flask db migrate 
-    flask db upgrade
     
+
 And then, finally we run our project in local, as default it will run in the port 5000
 
     flask run
+
+Here a note, the migrations are already in the project, but if you experience any problem with them, first be sure that the database is created, if not do it manually *create database deltaitest;* and just to be sure delete the migrations folder and run the next commands
+
+With this command, we start the migration folder and all the sutff for SQLAlchemy
+    
+    flask db init
+    
+With the following commands, we prepare the models migrations and then we created them in the DB
+
+    flask db migrate 
+    flask db upgrade
 
 Now it should be running, again enjoy!
