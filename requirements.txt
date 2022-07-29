@@ -34,7 +34,7 @@ python-dotenv==0.13.0
 python-editor==1.0.4
 queuelib==1.5.0
 requests==2.23.0
-Scrapy==2.1.0
+Scrapy==2.6.2
 service-identity==18.1.0
 six==1.15.0
 soupsieve==2.0.1
