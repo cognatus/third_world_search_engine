@@ -1,60 +1,130 @@
 # third_world_search_engine
 
-I hope you enjoy this project, it was kind of quick so it obviously can be improved in a lot of ways, have a wonderful day, as usual remember to git clone the project ;)
+**An open-source news discovery API focused on regional journalism, independent publishers, and transparent search relevance.**
 
-BTW we use mysql for this project, so if you plan to use this DB locally be sure to have it installed and running in your computer, here is a good tutorial for that https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-18-04
+## Project Overview
 
-Valar morghulis
+third_world_search_engine is a Python and Flask-based search engine prototype that retrieves information from supported news websites, analyzes keywords, ranks results, and stores search information in MySQL.
 
-### Install with this dependencies
-    sudo apt-get install python-mysqldb
-    sudo apt-get install libmysqlclient-dev
+I plan to evolve the project into an open-source news discovery service focused on regional journalism and independent publishers whose reporting can be difficult to discover through conventional search tools.
 
-### Create a virtual enviroment and activate it
-    python3 -m venv venv
-    source venv/bin/activate
+The platform will provide developers with configurable news sources, transparent relevance scoring, regional filtering, and a documented search API.
 
-### At this point, you should be inside the project, then install the dependencies from requirements.txt
-    pip install -r requirements.txt
-    
-If you experience any problem installing de dependencies, try manually install this specific dependencies
-              
-    pip install Flask
-    pip install beautifulsoup4
-    pip install requests
-    pip install flask-sqlalchemy
-    pip install flask-migrate
-    pip install python-dotenv
-    pip install mysqlclient
-    
-### Create a .env file in the root of the project and follow this example to see what variables do you need there
-Remember, this is a file, no code for the terminal
+Rather than relying on opaque ranking mechanisms, the project will emphasize understandable, deterministic information retrieval techniques.
 
-      DB_USER=your_mysql_user
-      DB_PSW=your_mysql_user's_password
-      DB_URL=localhost_or_server_url
-      DB_NAME=a_db_name
-Fort this project, you can choose the db name but i propose you to use deltaitest
+## Target Users
 
-### How to run
-With this command we specify the file to run with flask
+- Developers building news discovery applications
+- Researchers exploring regional journalism and media coverage
+- Independent publishers interested in content discoverability
+- Open-source contributors working on search and information retrieval systems
 
-    export FLASK_APP=deltai_api.py
-    
+## Tech Stack
 
-And then, finally we run our project in local, as default it will run in the port 5000
+- **Language:** Python 3
+- **API Framework:** Flask
+- **Database:** MySQL
+- **ORM:** Flask-SQLAlchemy
+- **Migrations:** Flask-Migrate
+- **Web Extraction:** Requests, Beautiful Soup
+- **Search:** Keyword analysis and relevance scoring
 
-    flask run
+## Existing Implementation
 
-Here a note, the migrations are already in the project, but if you experience any problem with them, first be sure that the database is created, if not do it manually *create database deltaitest;* and just to be sure delete the migrations folder and run the next commands
+The original prototype includes:
 
-With this command, we start the migration folder and all the sutff for SQLAlchemy
-    
-    flask db init
-    
-With the following commands, we prepare the models migrations and then we created them in the DB
+- Keyword-based news search endpoints
+- Source-specific article extraction
+- Text analysis and relevance scoring
+- Search result ranking
+- Database models and migrations
+- Search result persistence
 
-    flask db migrate 
-    flask db upgrade
+The original integrations included CNN, BBC, and The New York Times.
 
-Now it should be running, again enjoy!
+Support for regional and independent publications is part of the planned development rather than existing functionality.
+
+## API
+
+The original application exposes:
+
+**POST /api/news**
+
+Example request:
+
+`{"keywords": ["technology", "education"]}`
+
+The API accepts a list of keywords and processes them through the existing search pipeline.
+
+## Project Structure
+
+- `deltai_api/` — Flask application, models, and search components
+- `migrations/` — Database migrations
+- `db_config.py` — Database configuration
+- `deltai_api.py` — Application entry point
+- `requirements.txt` — Python dependencies
+
+## Local Development
+
+1. Clone the repository.
+2. Create a virtual environment using `python3 -m venv .venv`.
+3. Activate it using `source .venv/bin/activate`.
+4. Install dependencies using `pip install -r requirements.txt`.
+5. Configure a local MySQL database.
+6. Set the required database environment variables.
+7. Set `FLASK_APP=deltai_api.py`.
+8. Run `flask db upgrade` and `flask run`.
+
+Compatibility with modern Python versions and external news sources requires validation.
+
+## Planned Development Roadmap
+
+### Phase 1 — Backend Modernization
+
+- [ ] Upgrade Python and Flask dependencies.
+- [ ] Refactor ingestion, ranking, persistence, and API components.
+- [ ] Add consistent request validation and error handling.
+- [ ] Introduce unit and integration tests.
+- [ ] Create a reproducible local development environment.
+
+### Phase 2 — News Source Integration
+
+- [ ] Add configurable RSS and Atom feed adapters.
+- [ ] Introduce publisher metadata and source attribution.
+- [ ] Implement language and regional classification.
+- [ ] Normalize article metadata into a consistent format.
+- [ ] Add duplicate detection and canonical URL handling.
+
+### Phase 3 — Search and Ranking
+
+- [ ] Improve keyword relevance scoring.
+- [ ] Introduce freshness and source-diversity ranking factors.
+- [ ] Implement regional and language filters.
+- [ ] Add explainable relevance scoring.
+- [ ] Introduce pagination and configurable result limits.
+
+### Phase 4 — Developer Experience
+
+- [ ] Publish OpenAPI documentation.
+- [ ] Introduce configurable indexing and caching.
+- [ ] Build a CLI for indexing approved feeds and running searches.
+- [ ] Add structured logging and operational metrics.
+- [ ] Create synthetic fixtures for deterministic search tests.
+
+## Current Status and Future Direction
+
+third_world_search_engine is an independently developed search API prototype that I plan to expand and maintain as an open-source news discovery platform.
+
+The main objective is to make regional and independent journalism easier to discover through transparent and configurable search technology.
+
+My initial development focus will be modernizing the search pipeline, adding support for configurable news sources, improving ranking quality, and exposing a stable API for integration into other applications.
+
+As the project evolves, I intend to expand regional filtering, source attribution, indexing capabilities, and developer tooling.
+
+The existing implementation provides a foundation for ingestion, ranking, and persistence, while the planned work involves substantial backend development, search architecture, API design, and automated testing.
+
+The project will use synthetic testing fixtures and appropriately authorized public content or metadata, respecting publisher access policies and content rights.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
